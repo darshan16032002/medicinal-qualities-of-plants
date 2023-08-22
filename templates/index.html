@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <title>Medical Plant Classification</title>
+    <style>
+        body {
+            background-image: url("static/rice-bg.jpg");
+            background-size: cover;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #preview {
+            display: none;
+            max-width: 300px;
+            max-height: 300px;
+            margin: 30px auto;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        #form-data {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .file-label {
+            display: inline-block;
+            width: 150px;
+            height: 50px;
+            margin: 20px auto;
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            line-height: 50px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .file-label:hover {
+            background-color: #286090;
+        }
+
+        #submit-btn,
+        #cancel-btn {
+            display: none;
+            width: 150px;
+            height: 50px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #cancel-btn {
+            background-color: #FF0000;
+        }
+
+        #submit-btn:hover {
+            background-color: white;
+            color: green;
+        }
+
+        #cancel-btn:hover {
+            background-color: white;
+            color: red;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .btn-container button {
+            margin: 10px;
+        }
+    </style>
+    <script>
+        function previewImage(event) {
+            console.log("Ckaeed");
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('preview');
+                output.style.display = 'block';
+                output.src = reader.result;
+                document.getElementById('submit-btn').style.display = 'block';
+                document.getElementById('cancel-btn').style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function cancelSelection() {
+            document.getElementById('file-input').value = '';
+            document.getElementById('preview').style.display = 'none';
+            document.getElementById('submit-btn').style.display = 'none';
+            document.getElementById('cancel-btn').style.display = 'none';
+        }
+
+        window.onload = () => {
+            cancelSelection();
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Medical Plant Classification</h1>
+    <form action="/predict" method="POST" enctype="multipart/form-data" id="form-data">
+        <input id="file-input" type="file" name="file" accept="image/*" onchange="previewImage(event)">
+        <label for="file-input" class="file-label">Choose File</label>
+        <img id="preview" src="#" alt="Image preview">
+        <div class="btn-container">
+            <button type="submit" id="submit-btn">Submit</button>
+        </div>
+    </form>
+</body>

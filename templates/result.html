@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <title>Medical Plant Classification</title>
+    <style>
+        body {
+            background-image: url("static/rice-bg.jpg");
+            background-size: cover;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #preview {
+            max-width: 300px;
+            max-height: 300px;
+            margin: 30px auto;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        #form-data {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .file-label {
+            display: inline-block;
+            width: 150px;
+            height: 50px;
+            margin: 20px auto;
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            line-height: 50px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .file-label:hover {
+            background-color: #286090;
+        }
+
+        #submit-btn,
+        #cancel-btn {
+            width: 150px;
+            height: 50px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #cancel-btn {
+            background-color: #FF0000;
+        }
+
+        #submit-btn:hover {
+            background-color: white;
+            color: green;
+        }
+
+        #cancel-btn:hover {
+            background-color: white;
+            color: red;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .btn-container button {
+            margin: 10px;
+        }
+    </style>
+    <script>
+        function onClose() {
+            history.back();
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Medical Plant Classification</h1>
+    <img id="preview" src="{{image_path}}" alt="Image preview">
+    <p style="font-size: 24px; color:white;background-color:black;">{{result.name}}</p>
+    <p style="font-size: 14px; color:white;background-color:black;">{{result.properties}}</p>
+    <button id="cancel-btn" onclick="onClose()">Cancel</button>
+</body>
